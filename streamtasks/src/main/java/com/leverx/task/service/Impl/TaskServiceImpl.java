@@ -64,14 +64,4 @@ public class TaskServiceImpl implements TaskService {
         return tasks.stream().collect(groupingBy(Task::getTags));
     }
 
-//    public Map<Object, List<Task>> groupTitles(List<Task> tasks) {
-//        Function<Task, List<Object>> compose = task -> Arrays.asList(
-//                task.getTitle(),
-//                task.getType(),
-//                task.getCreatedOn(),
-//                task.getTags()
-//        );
-//
-//        return tasks.stream().collect(groupingBy(compose, toList()));
-//    }
 }

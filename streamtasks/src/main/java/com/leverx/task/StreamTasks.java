@@ -12,7 +12,7 @@ public class StreamTasks {
 
         StudentService studentService = new StudentServiceImpl();
         studentService.getAverageRate(studentService.createStudents(), "Math");
-        //studentService.showSubjectStatistics(studentService.createStudents());
+        studentService.showSubjectStatistics(studentService.createStudents());
 
         TaskService taskService = new TaskServiceImpl();
         taskService.sort(taskService.createTasks());
