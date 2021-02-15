@@ -6,10 +6,14 @@ import com.leverx.task.service.TaskService;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.Set;
+
+import static java.util.Arrays.asList;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.joining;
 
 public class TaskServiceImpl implements TaskService {
 
@@ -24,7 +28,7 @@ public class TaskServiceImpl implements TaskService {
 
         Task task5 = new Task("Read Domain Driven Design book", TaskType.READING, LocalDate.of(2015, Month.JULY, 5)).addTag("ddd").addTag("books").addTag("reading");
 
-        return Arrays.asList(task1, task2, task3, task4, task5);
+        return asList(task1, task2, task3, task4, task5);
     }
 
     public String sort(List<Task> tasks) {
@@ -32,7 +36,42 @@ public class TaskServiceImpl implements TaskService {
                 .limit(5)
                 .sorted(Comparator.comparing(Task::getCreatedOn))
                 .map(Task::getTitle)
-                .collect(Collectors.joining(", "));
+                .collect(joining(", "));
     }
 
+    public List<Map<?, List<Task>>> groupTitlesByFourParams(List<Task> tasks) {
+        return asList(
+                groupByTitle(tasks),
+                groupByType(tasks),
+                groupByCreatedOn(tasks),
+                groupByTags(tasks));
+    }
+
+    public Map<String, List<Task>> groupByTitle(List<Task> tasks) {
+        return tasks.stream().collect(groupingBy(Task::getTitle));
+    }
+
+    public Map<TaskType, List<Task>> groupByType(List<Task> tasks) {
+        return tasks.stream().collect(groupingBy(Task::getType));
+    }
+
+    public Map<LocalDate, List<Task>> groupByCreatedOn(List<Task> tasks) {
+        return tasks.stream().collect(groupingBy(Task::getCreatedOn));
+    }
+
+    public Map<Set<String>, List<Task>> groupByTags(List<Task> tasks) {
+        System.out.println(tasks.stream().collect(groupingBy(Task::getTags)));
+        return tasks.stream().collect(groupingBy(Task::getTags));
+    }
+
+//    public Map<Object, List<Task>> groupTitles(List<Task> tasks) {
+//        Function<Task, List<Object>> compose = task -> Arrays.asList(
+//                task.getTitle(),
+//                task.getType(),
+//                task.getCreatedOn(),
+//                task.getTags()
+//        );
+//
+//        return tasks.stream().collect(groupingBy(compose, toList()));
+//    }
 }
