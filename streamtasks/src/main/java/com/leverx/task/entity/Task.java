@@ -9,29 +9,23 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
 @RequiredArgsConstructor
 public class Task {
-    @Getter
     @Setter
     private String id;
 
-    @Getter
     private final String title;
 
-    @Getter
     private final TaskType type;
 
-    @Getter
     private final LocalDate createdOn;
 
-    @Getter
     @Setter
     private boolean done = false;
 
-    @Getter
     private final Set<String> tags = new HashSet<>();
 
-    @Getter
     @Setter
     private LocalDate dueTo;
 

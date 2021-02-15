@@ -8,5 +8,5 @@ import java.util.List;
 public interface TaskDTOService {
     TaskDTO convert(Task task);
 
-    Object[] convertTasksToTaskDTO(List<Task> tasks);
+    List<TaskDTO> convertTasksToTaskDTO(List<Task> tasks);
 }

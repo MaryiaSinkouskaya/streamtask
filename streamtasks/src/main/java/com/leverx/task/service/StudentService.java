@@ -7,5 +7,9 @@ import java.util.List;
 public interface StudentService {
     List<Student> createStudents();
 
-    double averageRate(List<Student> students, String subject);
-}
+    double getAverageRate(List<Student> students, String subject);
+    void showSubjectStatistics(List<Student> students);
+    String getNameWithRatingMark(Student student, String subject);
+
+
+    }

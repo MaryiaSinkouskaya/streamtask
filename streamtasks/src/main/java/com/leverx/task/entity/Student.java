@@ -6,13 +6,12 @@ import lombok.Setter;
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
 public class Student {
 
-    @Getter
     @Setter
     private Map<String, Integer> rating;
 
-    @Getter
     @Setter
     private String name;
 
@@ -25,6 +24,5 @@ public class Student {
         rating.put(subject, rate);
         return this;
     }
-
 
 }
