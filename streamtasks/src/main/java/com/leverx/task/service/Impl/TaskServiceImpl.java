@@ -7,6 +7,7 @@ import com.leverx.task.service.TaskService;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -62,6 +63,33 @@ public class TaskServiceImpl implements TaskService {
     public Map<Set<String>, List<Task>> groupByTags(List<Task> tasks) {
         System.out.println(tasks.stream().collect(groupingBy(Task::getTags)));
         return tasks.stream().collect(groupingBy(Task::getTags));
+    }
+
+    //Considering strings such as:
+//        a = "aaabbxxxxxtx"
+//        b = "p1p1p1p"
+//
+//        We want to implement func(string) that returns the most common character,
+//        and the number of times it appears in the string passed as single argument.
+//        How can we the the following output?
+//
+//        print func(a)
+//        >> ["x", 6]
+//
+//        print func(b)
+//        >> ["p", 4]
+
+
+    public String task(String str) {
+        Map<Character, Integer> map = new HashMap<>();
+        str.codePoints().mapToObj(c -> (char) c).forEach(symbol ->
+                map.put(symbol, str.codePoints().mapToObj(c -> (char) c)
+                        .filter(symbol::equals)
+                        .toArray(Character[]::new)
+                        .length));
+        return map.entrySet().stream().max(Map.Entry.comparingByValue())
+                .map(entry -> "[\"" + entry.getKey().toString() + "\", "
+                        + entry.getValue().toString() + "]").orElse("");
     }
 
 }

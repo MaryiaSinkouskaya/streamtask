@@ -10,15 +10,19 @@ import com.leverx.task.service.TaskService;
 public class StreamTasks {
     public static void main(String[] args) {
 
-        StudentService studentService = new StudentServiceImpl();
-        studentService.getAverageRate(studentService.createStudents(), "Math");
-        studentService.showSubjectStatistics(studentService.createStudents());
-
+//        StudentService studentService = new StudentServiceImpl();
+//        studentService.getAverageRate(studentService.createStudents(), "Math");
+//        studentService.showSubjectStatistics(studentService.createStudents());
+//
         TaskService taskService = new TaskServiceImpl();
-        taskService.sort(taskService.createTasks());
-        taskService.groupTitlesByFourParams(taskService.createTasks());
+        System.out.println(taskService.task("qqrd123ql"));
+//        taskService.sort(taskService.createTasks());
+//        taskService.groupTitlesByFourParams(taskService.createTasks());
+//
+//        TaskDTOService taskDTOService = new TaskDTOServiceImpl();
+//        taskDTOService.convertTasksToTaskDTO(taskService.createTasks());
 
-        TaskDTOService taskDTOService = new TaskDTOServiceImpl();
-        taskDTOService.convertTasksToTaskDTO(taskService.createTasks());
+
+
     }
 }

@@ -24,4 +24,5 @@ public interface TaskService {
 
     List<Map<?, List<Task>>> groupTitlesByFourParams(List<Task> tasks);
 
+    String task(String str);
     }
